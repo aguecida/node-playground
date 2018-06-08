@@ -12,9 +12,23 @@ it('should add two numbers', () => {
     expect(result).toBe(44);
 });
 
+it('should add two numbers asynchronously', done => {
+    utils.asyncAdd(4, 3, sum => {
+        expect(sum).toBe(7);
+        done();
+    });
+});
+
 it('should square a number', () => {
     let result = utils.square(2);
     expect(result).toBe(4);
+});
+
+it('should square a number asynchronously', done => {
+    utils.asyncSquare(3, result => {
+        expect(result).toBe(9);
+        done();
+    });
 });
 
 it('should set first and last name', () => {
