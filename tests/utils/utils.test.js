@@ -1,17 +1,30 @@
+const expect = require('expect');
+
 const utils = require('./utils');
+
+it('should be a number', () => {
+    let result = utils.add(1, 2);
+    expect(result).toBeA('number');
+});
 
 it('should add two numbers', () => {
     let result = utils.add(33, 11);
-    
-    if (result !== 44) {
-        throw new Error(`Expected 44, but got ${result}`);
-    }
+    expect(result).toBe(44);
 });
 
 it('should square a number', () => {
     let result = utils.square(2);
+    expect(result).toBe(4);
+});
 
-    if (result !== 4) {
-        throw new Error(`Expected 4, but got ${result}`);
-    }
+it('should set first and last name', () => {
+    let user = {
+        location: 'The Wall',
+        age: 34
+    };
+    
+    let newUser = utils.setName(user, 'Tyrion Lannister');
+
+    expect(newUser).toBeA('object');
+    expect(newUser).toInclude({ firstName: 'Tyrion', lastName: 'Lannister' });
 });
