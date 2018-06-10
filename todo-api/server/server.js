@@ -50,6 +50,24 @@ app.post('/todos', (req, res) => {
     });
 });
 
+app.delete('/todos/:id', (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        return res.status(400).send('Invalid id');
+    }
+
+    Todo.findByIdAndRemove(id).then(todo => {
+        if (!todo) {
+            return res.status(404).send('Todo not found');
+        }
+
+        res.send(todo);
+    }).catch(err => {
+        res.status(500).send('Unable to delete todo');
+    });
+});
+
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
