@@ -95,3 +95,38 @@ describe('POST /todos', () => {
             });
     });
 });
+
+describe('DELETE /todos/:id', () => {
+    it('should delete todo by id', done => {
+        request(app)
+            .delete(`/todos/${todos[1]._id.toHexString()}`)
+            .expect(200)
+            .expect(res => {
+                expect(res.body.text).toBe('Second test todo');
+            })
+            .end((err, res) => {
+                if (err) {
+                    return done(err);
+                }
+
+                Todo.findById(todos[1]._id.toHexString()).then(todo => {
+                    expect(todo).toBeFalsy();
+                    done();
+                }).catch(err => done(err));
+            });
+    });
+
+    it('should return a 404 if todo not found', done => {
+        request(app)
+            .get(`/todos/${new ObjectID().toHexString()}`)
+            .expect(404)
+            .end(done);
+    });
+
+    it('should return a 400 for bad id', done => {
+        request(app)
+            .get('/todos/123')
+            .expect(400)
+            .end(done);
+    });
+});
