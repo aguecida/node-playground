@@ -101,7 +101,7 @@ app.patch('/todos/:id', (req, res) => {
         res.send(todo);
     }).catch(err => {
         res.status(500).send('Unable to update todo');
-    })
+    });
 });
 
 // Create user
@@ -121,6 +121,18 @@ app.post('/users', (req, res) => {
 // Get details of authenticated user
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
+});
+
+app.post('/users/login', (req, res) => {
+    let body = _.pick(req.body, [ 'email', 'password' ]);
+
+    User.findByCredentials(body.email, body.password).then(user => {
+        return user.generateAuthToken().then(token => {
+            res.status(200).header('x-auth', token).send(user);
+        });
+    }).catch(() => {
+        res.status(401).send();
+    });
 });
 
 app.listen(port, () => {
