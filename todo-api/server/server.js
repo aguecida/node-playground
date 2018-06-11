@@ -114,7 +114,7 @@ app.post('/users', (req, res) => {
     }).then(token => {
         res.header('x-auth', token).send(user);
     }).catch(err => {
-        res.status(500).send(err);
+        res.status(400).send(err);
     });
 });
 
