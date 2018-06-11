@@ -1,4 +1,4 @@
-require('./config/config');
+require('./config/config'); // Configure the env this server is running on
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,6 +16,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+// Get all todos
 app.get('/todos', (req, res) => {
     Todo.find().then(docs => {
         res.send(docs);
@@ -24,6 +25,7 @@ app.get('/todos', (req, res) => {
     });
 });
 
+// Get todo by id
 app.get('/todos/:id', (req, res) => {
     const id = req.params.id;
 
@@ -42,6 +44,7 @@ app.get('/todos/:id', (req, res) => {
     })
 });
 
+// Create todo
 app.post('/todos', (req, res) => {
     let todo = new Todo({
         text: req.body.text
@@ -54,6 +57,7 @@ app.post('/todos', (req, res) => {
     });
 });
 
+// Delete todo by id
 app.delete('/todos/:id', (req, res) => {
     const id = req.params.id;
 
@@ -72,9 +76,10 @@ app.delete('/todos/:id', (req, res) => {
     });
 });
 
+// Update todo by id
 app.patch('/todos/:id', (req, res) => {
     const id = req.params.id;
-    let body = _.pick(req.body, [ 'text', 'completed' ]);
+    let body = _.pick(req.body, [ 'text', 'completed' ]); // Only allow update of these properties
 
     if (!ObjectID.isValid(id)) {
         return res.status(400).send('Invalid id');
@@ -99,8 +104,9 @@ app.patch('/todos/:id', (req, res) => {
     })
 });
 
+// Create user
 app.post('/users', (req, res) => {
-    let body = _.pick(req.body, [ 'email', 'password' ]);
+    let body = _.pick(req.body, [ 'email', 'password' ]); // Only grab email and password
     let user = new User(body);
 
     user.save().then(() => {
@@ -112,6 +118,7 @@ app.post('/users', (req, res) => {
     });
 });
 
+// Get details of authenticated user
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
 });
