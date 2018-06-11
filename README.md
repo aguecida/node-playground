@@ -10,7 +10,7 @@ A console app that uses the [Google Maps API](https://cloud.google.com/maps-plat
 Note: You will need to add your Dark Sky API secret to the `weather.js` file.
 
 # web-server
-https://secret-anchorage-18068.herokuapp.com/
+https://secret-anchorage-18068.herokuapp.com
 
 A simple web server built with [Express](https://expressjs.com/) and [Handlebars](https://handlebarsjs.com/) and hosted on [Heroku](https://www.heroku.com/).
 
@@ -19,3 +19,10 @@ Note: To deploy the web-server subdirectory to Heroku, you need to push only thi
 # tests
 
 Node unit testing with [Mocha](https://mochajs.org/), [Expect](https://github.com/mjackson/expect), and [SuperTest](https://github.com/visionmedia/supertest).
+
+# todo-api
+API Server: https://sleepy-ocean-67400.herokuapp.com
+
+A todo app API built with [Express](https://expressjs.com/), using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/) for data storage, and hosted on [Heroku](https://www.heroku.com/).
+
+Note: To deploy the todo-api subdirectory to Heroku, you need to push only this directory (i.e. `git subtree push --prefix todo-api heroku master`).
