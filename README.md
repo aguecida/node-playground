@@ -23,6 +23,6 @@ Node unit testing with [Mocha](https://mochajs.org/), [Expect](https://github.co
 # todo-api
 API Server: https://sleepy-ocean-67400.herokuapp.com
 
-A todo app API built with [Express](https://expressjs.com/), using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/) for data storage, and hosted on [Heroku](https://www.heroku.com/).
+A todo app API built with [Express](https://expressjs.com/), using [MongoDB](https://www.mongodb.com/) and [Mongoose](http://mongoosejs.com/) for data storage, and hosted on [Heroku](https://www.heroku.com/). Includes CRUD operations for users and todos. APIs are protected using [JWT](https://jwt.io/) tokens which are provided to users on login and can be passed through an HTTP header when making a request to an API.
 
 Note: To deploy the todo-api subdirectory to Heroku, you need to push only this directory (i.e. `git subtree push --prefix todo-api heroku master`).
