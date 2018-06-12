@@ -19,14 +19,6 @@ socket.on('newMessage', message => {
     });
 
     $('#messages').append(html);
-
-    // let formattedTime = moment(message.createdAt).format('h:mm a');
-
-    // let className = message.from === 'Admin' ? 'admin-message' : 'user-message';
-    // let messageText = message.from === 'Admin' ? message.text : `${formattedTime} ${message.from}: ${message.text}`;
-
-    // let li = $('<li></li>').addClass(className).text(messageText);
-    // $('#messages').append(li);
 });
 
 socket.on('newLocationMessage', message => {
@@ -40,14 +32,6 @@ socket.on('newLocationMessage', message => {
     });
 
     $('#messages').append(html);
-
-    // let formattedTime = moment(message.createdAt).format('h:mm a');
-
-    // let li = $('<li></li>').text(`${formattedTime} ${message.from}: `);
-    // let a = $('<a target="_blank">My current location</a>').attr('href', message.url);
-    
-    // li.append(a);
-    // $('#messages').append(li);
 });
 
 $(document).on('submit', '#message-form', e => {
