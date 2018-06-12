@@ -9,15 +9,19 @@ socket.on('disconnect', () => {
 });
 
 socket.on('newMessage', data => {
+    let formattedTime = moment(data.createdAt).format('h:mm a');
+
     let className = data.from === 'Admin' ? 'admin-message' : 'user-message';
-    let messageText = data.from === 'Admin' ? data.text : `${data.from}: ${data.text}`;
+    let messageText = data.from === 'Admin' ? data.text : `${formattedTime} ${data.from}: ${data.text}`;
 
     let li = $('<li></li>').addClass(className).text(messageText);
     $('#messages').append(li);
 });
 
 socket.on('newLocationMessage', data => {
-    let li = $('<li></li>').text(`${data.from}: `);
+    let formattedTime = moment(data.createdAt).format('h:mm a');
+
+    let li = $('<li></li>').text(`${formattedTime} ${data.from}: `);
     let a = $('<a target="_blank">My current location</a>').attr('href', data.url);
     
     li.append(a);
