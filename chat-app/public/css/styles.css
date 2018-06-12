@@ -158,26 +158,20 @@
     padding: 10px;
   }
   
-  .message__title {
+  .message-title {
     display: flex;
     margin-bottom: 5px;
   }
   
-  .message__title h4 {
+  .message-title h4 {
     font-weight: 600;
     margin-right: 10px;
   }
   
-  .message__title span {
+  .message-title span {
     color: #999;
   }
 
-  .admin-message {
-    text-align: center;
-    margin: 5px 0;
-    color: #aaa;
-  }
-  
   @media (max-width: 600px) {
     * {
       font-size: 1rem;

@@ -8,24 +8,46 @@ socket.on('disconnect', () => {
     console.log('Disconnected from server');
 });
 
-socket.on('newMessage', data => {
-    let formattedTime = moment(data.createdAt).format('h:mm a');
+socket.on('newMessage', message => {
+    let formattedTime = moment(message.createdAt).format('h:mm a');
+    let template = $('#message-template').html();
 
-    let className = data.from === 'Admin' ? 'admin-message' : 'user-message';
-    let messageText = data.from === 'Admin' ? data.text : `${formattedTime} ${data.from}: ${data.text}`;
+    let html = Mustache.render(template, {
+        text: message.text,
+        from: message.from,
+        createdAt: formattedTime
+    });
 
-    let li = $('<li></li>').addClass(className).text(messageText);
-    $('#messages').append(li);
+    $('#messages').append(html);
+
+    // let formattedTime = moment(message.createdAt).format('h:mm a');
+
+    // let className = message.from === 'Admin' ? 'admin-message' : 'user-message';
+    // let messageText = message.from === 'Admin' ? message.text : `${formattedTime} ${message.from}: ${message.text}`;
+
+    // let li = $('<li></li>').addClass(className).text(messageText);
+    // $('#messages').append(li);
 });
 
-socket.on('newLocationMessage', data => {
-    let formattedTime = moment(data.createdAt).format('h:mm a');
-
-    let li = $('<li></li>').text(`${formattedTime} ${data.from}: `);
-    let a = $('<a target="_blank">My current location</a>').attr('href', data.url);
+socket.on('newLocationMessage', message => {
+    let formattedTime = moment(message.createdAt).format('h:mm a');
+    let template = $('#location-message-template').html();
     
-    li.append(a);
-    $('#messages').append(li);
+    let html = Mustache.render(template, {
+        url: message.url,
+        from: message.from,
+        createdAt: formattedTime
+    });
+
+    $('#messages').append(html);
+
+    // let formattedTime = moment(message.createdAt).format('h:mm a');
+
+    // let li = $('<li></li>').text(`${formattedTime} ${message.from}: `);
+    // let a = $('<a target="_blank">My current location</a>').attr('href', message.url);
+    
+    // li.append(a);
+    // $('#messages').append(li);
 });
 
 $(document).on('submit', '#message-form', e => {
