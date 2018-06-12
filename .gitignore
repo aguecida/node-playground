@@ -6,3 +6,6 @@ node_modules/
 
 # log file
 server.log
+
+# development and testing config
+**/config.json
