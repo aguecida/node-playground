@@ -39,6 +39,8 @@ $(document).on('submit', '#message-form', e => {
     
     let textbox = $(e.target).find('input');
 
+    if (!textbox.val()) return;
+
     socket.emit('createMessage', { from: 'User', text: textbox.val() }, () => {
         textbox.val('');
     });
