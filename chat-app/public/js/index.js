@@ -9,7 +9,10 @@ socket.on('disconnect', () => {
 });
 
 socket.on('newMessage', data => {
-    let li = $('<li></li>').text(`${data.from}: ${data.text}`);
+    let className = data.from === 'Admin' ? 'admin-message' : 'user-message';
+    let messageText = data.from === 'Admin' ? data.text : `${data.from}: ${data.text}`;
+
+    let li = $('<li></li>').addClass(className).text(messageText);
     $('#messages').append(li);
 });
 
@@ -24,8 +27,10 @@ socket.on('newLocationMessage', data => {
 $(document).on('submit', '#message-form', e => {
     e.preventDefault();
     
-    socket.emit('createMessage', { from: 'User', text: $(e.target).find('input').val() }, () => {
-        $(e.target).find('input').val('');
+    let textbox = $(e.target).find('input');
+
+    socket.emit('createMessage', { from: 'User', text: textbox.val() }, () => {
+        textbox.val('');
     });
 });
 
