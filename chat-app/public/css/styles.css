@@ -37,6 +37,14 @@
     cursor: default;
     background: #698ea5;
   }
+
+  button.danger {
+    background: #ce3535;
+  }
+
+  button.danger:hover {
+    background: #b32b2b;
+  }
   
   .centered-form {
     display: flex;
@@ -81,6 +89,19 @@
   
   .chat {
     display: flex;
+  }
+
+  .chat-header {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #room-title {
+    float: left;
+  }
+
+  #leave-room {
+      float: right;
   }
   
   .chat-sidebar {

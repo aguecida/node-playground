@@ -17,6 +17,8 @@ let socket = io();
 socket.on('connect', () => {
     let params = $.deparam(window.location.search);
 
+    $('#room-title').text(params.room);
+
     socket.emit('join', params, (err) => {
         if (err) {
             alert(err);
@@ -90,4 +92,8 @@ $(document).on('click', '#send-location', e => {
     }, () => {
         alert('Unable to get location');
     });
+});
+
+$(document).on('click', '#leave-room', e => {
+    window.location.href = '/';
 });
