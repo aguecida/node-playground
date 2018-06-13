@@ -112,6 +112,10 @@
     padding: 10px;
     margin: 10px;
   }
+
+  #users > ol {
+      list-style: none;
+  }
   
   .chat-main {
     display: flex;
