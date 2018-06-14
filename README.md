@@ -1,3 +1,6 @@
+# async-await
+A currency conversion app implemented using the ES8 async/await feature.
+
 # chat-app
 https://fathomless-garden-24983.herokuapp.com/
 
