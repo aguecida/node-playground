@@ -2,7 +2,6 @@
 A currency conversion app implemented using the ES8 async/await feature.
 
 # chat-app
-https://fathomless-garden-24983.herokuapp.com/
 
 A room-based chat app built with [Socket IO](https://socket.io/).
 
@@ -29,7 +28,6 @@ A console app that uses the [Google Maps API](https://cloud.google.com/maps-plat
 Note: You will need to add your Dark Sky API secret to the `weather.js` file.
 
 # web-server
-https://secret-anchorage-18068.herokuapp.com
 
 A simple web server built with [Express](https://expressjs.com/) and [Handlebars](https://handlebarsjs.com/) and hosted on [Heroku](https://www.heroku.com/).
 
